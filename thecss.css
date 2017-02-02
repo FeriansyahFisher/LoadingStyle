@@ -1,0 +1,175 @@
+<!-- animation CSS -->
+
+@cyan:red;
+@cyan-shadow:darken(@cyan, 30%);
+
+body {
+  background:#161616;
+  font:12px normal Verdana, Arial, Helvetica, sans-serif;
+}
+
+.animation (@name, @duration:1s, @delay:0, @ease:linear, @iterations:infinite, @endState:normal) {
+	-webkit-animation: @name @duration @ease @iterations @endState;
+	-moz-animation: @name @duration @ease @iterations @endState;
+	-ms-animation: @name @duration @ease @iterations @endState;
+  animation: @name @duration @ease @iterations @endState;
+  .delay(@delay);
+}
+
+.transform-origin (@string) {
+  -webkit-transform-origin: @string;
+  -moz-transform-origin: @string;
+  -ms-transform-origin: @string;
+  transform-origin: @string;
+}
+
+.delay (@delay) {
+  -webkit-animation-delay: @delay;
+  -moz-animation-delay: @delay;
+  -o-animation-delay: @delay;
+  animation-delay: @delay;
+}
+
+.box-shadow (@string) {
+	-webkit-box-shadow: @string;
+	-moz-box-shadow: @string;
+	box-shadow: @string;
+}
+
+.shadow-border (@width:1px) {
+  border:@width solid #111;
+  border-right-color:#333;
+  border-bottom-color:#333;
+}
+
+.square (@xy:30px) {
+  width:@xy;
+  height:@xy;
+}
+
+.gradient (@deg:90deg, @color1:#161616, @color2:#000) {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@color1', endColorstr='@color2');
+  background-image:-webkit-linear-gradient(@deg, @color1 25%, @color2);
+  background-image:-moz-linear-gradient(@deg, @color1 25%, @color2);
+}
+
+.stop {
+  animation-play-state:paused;
+  -moz-animation-play-state:paused;
+  -webkit-animation-play-state:paused;
+}
+.trigger {
+  .gradient(top);
+  .shadow-border;
+  text-decoration:none;
+  color:#fff;
+  padding:10px;
+  font-family:Verdana, Geneva, sans-serif;
+  font-size:0.8em;
+  text-transform:lowercase;
+  margin:10px auto;
+  display:block;
+  width:140px;
+  border-radius:5px;
+  text-align:center;
+  &:hover {
+    .gradient(top, #202020, #161616);
+  }
+}
+
+#ajaxloader3 {
+  margin:0 auto;
+  .outer {
+    border:5px solid @cyan;
+    opacity:.9;
+    border-right-color:transparent;
+    border-left-color:transparent;
+    .square(50px);
+    margin:0 auto;
+    border-radius:50%;
+    .box-shadow(0 0 35px @cyan-shadow);
+    .animation(spin-pulse);
+  }
+  .inner {
+    border:5px solid @cyan;
+    opacity:.9;
+    border-left-color:transparent;
+    border-right-color:transparent;
+    border-radius:50%;
+    .box-shadow(0 0 15px @cyan-shadow);
+    .square;
+    position:relative;
+    top:-50px;
+    margin:0 auto;
+    .animation(spin-right);
+  }
+}
+
+@keyframes spin-right
+{
+  from { transform:rotate(0deg); opacity:0.2; }
+  50% { transform:rotate(180deg); opacity:1.0; }
+  to { transform:rotate(360deg); opacity:0.2; }
+}
+@-moz-keyframes spin-right
+{
+  from { -moz-transform:rotate(0deg); opacity:0.2; }
+  50% { -moz-transform:rotate(180deg); opacity:1.0; }
+  to { -moz-transform:rotate(360deg); opacity:0.2; }
+}
+@-webkit-keyframes spin-right
+{
+  from { -webkit-transform:rotate(0deg); opacity:0.2; }
+  50% { -webkit-transform:rotate(180deg); opacity:1.0; }
+  to { -webkit-transform:rotate(360deg); opacity:0.2; }
+}
+
+@keyframes spin-left
+{
+  from { transform:rotate(0deg); opacity:0.2; }
+  50% { transform:rotate(-180deg); opacity:1.0; }
+  to { transform:rotate(-360deg); opacity:0.2; }
+}
+@-moz-keyframes spin-left
+{
+  from { -moz-transform:rotate(0deg); opacity:0.2; }
+  50% { -moz-transform:rotate(-180deg); opacity:1.0; }
+  to { -moz-transform:rotate(-360deg); opacity:0.2; }
+}
+@-webkit-keyframes spin-left
+{
+  from { -webkit-transform:rotate(0deg); opacity:0.2; }
+  50% { -webkit-transform:rotate(-180deg); opacity:1.0; }
+  to { -webkit-transform:rotate(-360deg); opacity:0.2; }
+}
+
+@keyframes spin-pulse
+{
+  from {
+    transform:rotate(160deg);
+    opacity:0;
+    box-shadow:0 0 1px @cyan-shadow;
+  }
+  50% { transform:rotate(145deg); opacity:1; }
+  to { transform:rotate(-320deg); opacity:0; }
+}
+@-moz-keyframes spin-pulse
+{
+  from {
+    -moz-transform:rotate(160deg);
+    opacity:0;
+    box-shadow:0 0 1px @cyan-shadow;
+  }
+  50% { -moz-transform:rotate(145deg); opacity:1; }
+  to { -moz-transform:rotate(-320deg); opacity:0; }
+}
+@-webkit-keyframes spin-pulse
+{
+  from {
+    -webkit-transform:rotate(160deg);
+    opacity:0;
+    box-shadow:0 0 1px @cyan-shadow;
+  }
+  50% { -webkit-transform:rotate(145deg); opacity:1; }
+  to { -webkit-transform:rotate(-320deg); opacity:0; }
+}
